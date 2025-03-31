@@ -1,8 +1,9 @@
 api_key='c38986c04eeba139e93aae724f375443'
+url='https://api.themoviedb.org/3/movie/popular'
 
 final=pd.DataFrame()
 for j in range(1,501):
-    response=requests.get(f'https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=en-US&page={format(j)}').json()
+    response=requests.get(f'{url}?api_key={api_key}&language=en-US&page={format(j)}').json()
 
     popularity=[]
     vote_count=[]
@@ -27,5 +28,4 @@ for j in range(1,501):
     
     df=pd.DataFrame(d)
     
-    #final=final.append(df, ignore_index=True) # error reson is append and concat to 
     final = pd.concat([final, df], ignore_index=True)
